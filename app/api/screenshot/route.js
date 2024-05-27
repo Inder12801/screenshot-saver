@@ -4,6 +4,8 @@ import { NextResponse } from "next/server";
 
 export async function POST(req) {
   try {
+    // write cors policy
+
     const { url } = await req.json();
     const browser = await puppeteer.launch();
     const page = await browser.newPage();

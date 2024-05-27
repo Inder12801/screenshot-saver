@@ -11,9 +11,13 @@ const ScreenshotComponent = () => {
 
     try {
       const response = await axios.post(
-        "/api/screenshot",
+        "https://screenshot-saver.vercel.app/api/screenshot",
         { url },
-        { responseType: "blob" }
+        {
+          headers: {
+            "Content-Type": "application/blob",
+          },
+        }
       );
 
       if (response.status === 200) {

@@ -11,7 +11,7 @@ const ScreenshotComponent = () => {
 
     try {
       const response = await axios.post(
-        "https://screenshot-saver.vercel.app/api/screenshot",
+        "/api/screenshot",
         { url },
         {
           headers: {

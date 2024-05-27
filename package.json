@@ -1,6 +1,13 @@
 {
   "name": "screenshot-taker",
   "version": "0.1.0",
+  "vercel": {
+    "functions": {
+      "myFunction": {
+        "maxDuration": 30
+      }
+    }
+  },
   "private": true,
   "scripts": {
     "dev": "next dev",

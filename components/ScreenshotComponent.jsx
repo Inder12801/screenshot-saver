@@ -36,14 +36,19 @@ const ScreenshotComponent = () => {
   };
 
   return (
-    <div>
+    <div className="mt-10">
       <input
+        className="text-zinc-800 p-1 border-none outline-none"
         type="text"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
         placeholder="Enter URL"
       />
-      <button onClick={handleCapture} disabled={loading}>
+      <button
+        className="bg-cyan-600 p-1"
+        onClick={handleCapture}
+        disabled={loading}
+      >
         {loading ? "Capturing..." : "Capture Screenshots"}
       </button>
     </div>

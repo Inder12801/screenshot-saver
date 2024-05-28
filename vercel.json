@@ -1,0 +1,32 @@
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "next.config.js",
+            "use": "@vercel/next"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "headers": {
+                "Access-Control-Allow-Origin": "*"
+            },
+            "continue": true
+        },
+        {
+            "src": "/api/(.*)",
+            "headers": {
+                "Access-Control-Allow-Origin": "*"
+            },
+            "dest": "/api",
+            "methods": [
+                "GET",
+                "POST",
+                "PUT",
+                "DELETE"
+            ],
+            "maxDuration": 300
+        }
+    ]
+}

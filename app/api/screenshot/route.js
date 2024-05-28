@@ -2,7 +2,7 @@ import puppeteer from "puppeteer";
 import JSZip from "jszip";
 import { NextResponse } from "next/server";
 
-export async function POST(req) {
+export const POST = async (req, res) => {
   try {
     // write cors policy
 
@@ -91,8 +91,6 @@ export async function POST(req) {
   } catch (error) {
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
-}
-export const dynamic = "force-dynamic";
-export const config = {
-  maxDuration: 180, // Increase the maximum execution time (in seconds)
 };
+export const dynamic = "force-dynamic";
+export const macDuration = 300;

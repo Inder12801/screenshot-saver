@@ -93,4 +93,6 @@ export async function POST(req) {
   }
 }
 export const dynamic = "force-dynamic";
-export const macDuration = 300;
+export const config = {
+  maxDuration: 180, // Increase the maximum execution time (in seconds)
+};

@@ -44,7 +44,7 @@ export const POST = async (req, res) => {
     ];
 
     const screenshots = [];
-
+    console.log("Start");
     for (const device of devices) {
       await page.setViewport(device.viewport);
       await page.goto(url, { waitUntil: "networkidle2" });
@@ -67,6 +67,7 @@ export const POST = async (req, res) => {
     }
 
     await browser.close();
+    console.log("Ended");
 
     const zip = new JSZip();
     screenshots.forEach((screenshot, index) => {
@@ -85,10 +86,12 @@ export const POST = async (req, res) => {
       "Content-Type": "application/zip",
       "Content-Disposition": "attachment; filename=screenshots.zip",
     };
+    console.log("Zipped");
 
     const response = new NextResponse(zipBlob, { headers });
     return response;
   } catch (error) {
+    console.log(error);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 };

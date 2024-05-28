@@ -14,7 +14,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "puppeteer-install"
+    "postinstall": "puppeteer install"
   },
   "dependencies": {
     "archiver": "^7.0.1",

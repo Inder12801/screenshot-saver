@@ -12,11 +12,9 @@ const ScreenshotComponent = () => {
     try {
       const response = await axios.post(
         "/api/screenshot",
-        { url },
+        { url: url },
         {
-          headers: {
-            "Content-Type": "application/blob",
-          },
+          responseType: "blob",
         }
       );
 

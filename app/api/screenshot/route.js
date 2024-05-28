@@ -4,7 +4,10 @@ import { NextResponse } from "next/server";
 
 export const POST = async (req, res) => {
   try {
-    // write cors policy
+    // CORS policy
+    // res.setHeader("Access-Control-Allow-Origin", "*");
+    // res.setHeader("Access-Control-Allow-Methods", "POST, OPTIONS");
+    // res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 
     const { url } = await req.json();
     const browser = await puppeteer.launch();
@@ -82,18 +85,24 @@ export const POST = async (req, res) => {
 
     const zipBlob = await zip.generateAsync({ type: "nodebuffer" });
 
-    const headers = {
-      "Content-Type": "application/zip",
-      "Content-Disposition": "attachment; filename=screenshots.zip",
-    };
     console.log("Zipped");
 
-    const response = new NextResponse(zipBlob, { headers });
-    return response;
+    return new Response(zipBlob, {
+      headers: {
+        "Content-Type": "application/zip",
+        "Content-Disposition": "attachment; filename=screenshots.zip",
+      },
+    });
   } catch (error) {
     console.log(error);
-    return NextResponse.json({ error: error.message }, { status: 500 });
+    return new Response(JSON.stringify({ error: error.message }), {
+      status: 500,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
   }
 };
+
 export const dynamic = "force-dynamic";
-export const macDuration = 300;
+export const maxDuration = 300;

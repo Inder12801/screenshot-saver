@@ -8,6 +8,10 @@ const ScreenshotComponent = () => {
   const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
   const handleCapture = async () => {
+    if (url === "") {
+      alert("Please Enter Url");
+      return;
+    }
     setLoading(true);
 
     try {
@@ -29,31 +33,43 @@ const ScreenshotComponent = () => {
         link.click();
         link.remove();
       } else {
-        console.error("Failed to capture screenshots");
+        alert("Failed to capture screenshots");
+        return;
       }
     } catch (error) {
-      console.error("Error capturing screenshots:", error);
+      alert("Error capturing screenshots:", error);
+      return;
     }
 
     setLoading(false);
+    return;
   };
 
   return (
-    <div className="mt-10">
-      <input
-        className="text-zinc-800 p-1 border-none outline-none"
-        type="text"
-        value={url}
-        onChange={(e) => setUrl(e.target.value)}
-        placeholder="Enter URL"
-      />
-      <button
-        className="bg-cyan-600 p-1"
-        onClick={handleCapture}
-        disabled={loading}
-      >
-        {loading ? "Capturing..." : "Capture Screenshots"}
-      </button>
+    <div className="mt-10 flex flex-col items-center justify-center gap-6  w-2/3">
+      <h1 className="text-center text-cyan-500 text-4xl font-extrabold ">
+        Save time with taking screenshot!
+      </h1>
+      <h3 className="text-center">
+        Enter the URL of your website and click on the button to capture
+        screenshots.
+      </h3>
+      <div className="w-[80%] m-auto flex justify-center  ">
+        <input
+          className="text-zinc-800 text-xl  lg:p-2 lg:px-6 border-none outline-none rounded-tl-3xl rounded-bl-3xl"
+          type="text"
+          value={url}
+          onChange={(e) => setUrl(e.target.value)}
+          placeholder="Enter URL of your website"
+        />
+        <button
+          className="bg-cyan-600 text-xl   p-2 rounded-tr-3xl rounded-br-3xl"
+          onClick={handleCapture}
+          disabled={loading}
+        >
+          {loading ? "Capturing..." : "Capture Screenshots"}
+        </button>
+      </div>
     </div>
   );
 };

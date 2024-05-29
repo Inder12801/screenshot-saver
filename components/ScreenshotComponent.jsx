@@ -5,13 +5,14 @@ import axios from "axios";
 const ScreenshotComponent = () => {
   const [url, setUrl] = useState("");
   const [loading, setLoading] = useState(false);
+  const apiURL = process.env.NEXT_PUBLIC_API_URL;
 
   const handleCapture = async () => {
     setLoading(true);
 
     try {
       const response = await axios.post(
-        "/api/screenshot",
+        apiURL + "/screenshot",
         { url: url },
         {
           responseType: "blob",
